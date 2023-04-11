@@ -1178,6 +1178,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 570354609}
+  - component: {fileID: 570354610}
+  - component: {fileID: 570354611}
+  - component: {fileID: 570354613}
+  - component: {fileID: 570354612}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -1209,6 +1213,75 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &570354610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570354608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4410ed634522448b778c4b19d93491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &570354611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570354608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda3a0b02ffe4e047a68a0c1faf94f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedData:
+    Entity:
+      worldID: 0
+      isDirty: 0
+      isDisposed: 0
+      previousArchetypeId: 0
+      currentArchetypeId: 0
+--- !u!114 &570354612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570354608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 695
+--- !u!223 &570354613
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570354608}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &581762980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,7 +1672,11 @@ MonoBehaviour:
   - enabled: 1
     system: {fileID: 11400000, guid: 8f6bfb586e7a4654a8c960057e160b8b, type: 2}
   - enabled: 1
+    system: {fileID: 11400000, guid: 8653728d4feb9384a93d7bfe291e4afa, type: 2}
+  - enabled: 1
     system: {fileID: 11400000, guid: 2b9291890edd2a2419114e122636c780, type: 2}
+  - enabled: 1
+    system: {fileID: 11400000, guid: cb488685afb3c8e4f91709e42e3d6c86, type: 2}
   - enabled: 1
     system: {fileID: 11400000, guid: e68d315227cad7a49b6671b66a4f3418, type: 2}
   - enabled: 1
@@ -2313,7 +2390,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 806417333}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 570354610}
+        m_TargetAssemblyTypeName: DDX.MenuController, Assembly-CSharp
+        m_MethodName: GenerateRandomGrid
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &806417333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3533,6 +3622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1297928350}
+  - component: {fileID: 1297928351}
   m_Layer: 7
   m_Name: Start Point
   m_TagString: Untagged
@@ -3560,6 +3650,20 @@ RectTransform:
   m_AnchoredPosition: {x: 48, y: -60}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &1297928351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297928349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2329fd1cf36b3f47bd5aeaf26c5f335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedData:
+    Container: {fileID: 0}
 --- !u!1 &1325077270
 GameObject:
   m_ObjectHideFlags: 0

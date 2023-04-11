@@ -10,22 +10,29 @@ using System.Linq;
 
 namespace DDX
 {
-	[Il2CppSetOption(Option.NullChecks, false)]
-	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
-	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
-	[CreateAssetMenu(menuName = "ECS/Systems/" + nameof(RandomFigureGeneratorSystem))]
-	public sealed class RandomFigureGeneratorSystem : SimpleUpdateSystem<StartGameEvent>
-	{
-        [SerializeField] private RectTransform _dicesContainer;
-        [SerializeField] private GameObject _dicePrefab;
-        [SerializeField] private Vector3Int _size;
-        [SerializeField][Range(0,1f)] private float _fillPercentage;
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+    [Il2CppSetOption(Option.DivideByZeroChecks, false)]
+    [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(RandomFigureGeneratorSystem))]
+    public sealed class RandomFigureGeneratorSystem : SimpleUpdateSystem<RequestGenerateFigureEvent>
+    {
+        [SerializeField] private RandomFigureGeneratorSettings _settings;
+        private GameObject _dicePrefab => _settings.DicePrefab;
+        private Vector3Int _size => _settings.Size;
+        private float _fillPercentage => _settings.FillPercentage;
+        private RectTransform _dicesContainer;
 
-        protected override void Process(Entity entity, ref StartGameEvent component, in float deltaTime)
+        public override void OnUpdate(float deltaTime)
+        {
+            _dicesContainer = World.Filter.With<DicesContainerRef>().First().GetComponent<DicesContainerRef>().Container;
+            base.OnUpdate(deltaTime);
+        }
+
+        protected override void Process(Entity entity, ref RequestGenerateFigureEvent component, in float deltaTime)
         {
             var count = ((int)(_size.x * _size.y * _size.z * _fillPercentage / 3)) * 3;
             var points = GetRandomPoints(count);
-            if(points.Count != count)
+            if (points.Count != count)
                 while (points.Count % 3 != 0)
                     points.Remove(points.First());
 
@@ -33,12 +40,11 @@ namespace DDX
 
             foreach (var point in points)
             {
-                var dice= Instantiate(_dicePrefab, _dicesContainer);
+                var dice = Instantiate(_dicePrefab, _dicesContainer);
                 var gridPos = dice.GetComponent<InGridPositionMono>();
                 gridPos.GetData().Position = point;
+                gridPos.Entity.AddComponent<GeneratedDiceTag>();
             }
-
-            entity.RemoveComponent<StartGameEvent>();
 
             World.CreateEntity().AddComponent<CanSelectChangedEvent>();
             World.CreateEntity().AddComponent<FigureGeneratedEvent>();
@@ -87,14 +93,14 @@ namespace DDX
 
         private List<Vector3> GenerateAllGridPoints()
         {
-            var allPoints = new List<Vector3>((_size.x * 2 )* (_size.y*2) * _size.z);
-            for (float x = 0; x < _size.x; x+=0.5f)
+            var allPoints = new List<Vector3>((_size.x * 2) * (_size.y * 2) * _size.z);
+            for (float x = 0; x < _size.x; x += 0.5f)
             {
                 for (float y = 0; y < _size.y; y += 0.5f)
                 {
                     for (float z = 0; z < _size.z; z++)
                     {
-                        allPoints.Add( new Vector3(x, y, z));
+                        allPoints.Add(new Vector3(x, y, z));
                     }
                 }
             }

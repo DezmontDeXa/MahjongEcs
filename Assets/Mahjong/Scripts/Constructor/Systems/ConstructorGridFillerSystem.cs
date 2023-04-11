@@ -58,6 +58,7 @@ namespace DDX
                     if(!allPositions.Any(x=> neighbor.Equals(x.Value.Position)))
                         InstantiateInvisibleDice(grid, neighbor.Position);
         }
+
         private void AddThatLevelForPosition(Grid grid, Vector3 pos)
         {
             var allPositions = World.Filter.With<GridPositionsList>().First().GetComponent<GridPositionsList>().AllPositions;
@@ -117,6 +118,8 @@ namespace DDX
 
             foreach (var enitityPos in allPositions)
             {
+                if (enitityPos.Key.IsNullOrDisposed()) continue;
+
                 if (forRemoveNeighbors.Where(x=>x != null).Any(x => x.Equals(enitityPos.Value.Position)))
                 {
                     ref var goRef = ref enitityPos.Key.GetComponent<GameObjectRef>();

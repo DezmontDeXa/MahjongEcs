@@ -18,6 +18,11 @@ namespace DDX
             World.RegisterOneFrame<DicePointerExitEvent>();
             World.RegisterOneFrame<DiceClickedEvent>();
             World.RegisterOneFrame<StartGameEvent>();
+            World.RegisterOneFrame<RequestGenerateFigureEvent>();
+            World.RegisterOneFrame<FigureGeneratedEvent>(); 
+            World.RegisterOneFrame<StartGameEvent>();
+            World.RegisterOneFrame<LoseGameObject>();
+            World.RegisterOneFrame<LoseEvent>();
         }
 
         public override void Dispose()

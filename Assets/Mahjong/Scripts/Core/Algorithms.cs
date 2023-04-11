@@ -159,8 +159,8 @@ public static class Algorithms
     {
         var hits = Physics2D.RaycastAll(
             point,
-            Vector2.zero); 
-        
+            Vector2.zero);
+
         if (hits.Length == 0)
             return new Collider2D[0];
 
@@ -242,5 +242,23 @@ public static class Algorithms
         var entity = nearestCollider.transform.gameObject.GetComponent<EntityRefMono>().Entity;
 
         return entity;
+    }
+
+    public static bool CompareVector3(Vector3 x, Vector3 y)
+    {
+        return x.x == y.x && x.y == y.y && x.z == y.z;
+    }
+
+    public class Vector3Comparer : IEqualityComparer<Vector3>
+    {
+        public bool Equals(Vector3 x, Vector3 y)
+        {
+            return x.x == y.x && x.y == y.y && x.z == y.z;
+        }
+
+        public int GetHashCode(Vector3 obj)
+        {
+            return obj.GetHashCode();
+        }
     }
 }

@@ -7,9 +7,8 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38e316c91ae27f40902db0269d2bbfd, type: 3}
-  m_Name: Random Figure Generator System
+  m_Script: {fileID: 11500000, guid: 7c8519a7b78422f46adf78eb2b40a273, type: 3}
+  m_Name: RFG_Constructor Activate System
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: b5ce75e903a98df4a87a720f9225479a, type: 2}

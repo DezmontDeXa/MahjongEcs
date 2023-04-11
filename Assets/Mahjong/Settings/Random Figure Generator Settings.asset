@@ -7,9 +7,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38e316c91ae27f40902db0269d2bbfd, type: 3}
-  m_Name: Random Figure Generator System
+  m_Script: {fileID: 11500000, guid: 873853dd6b2b7a64191dab32df15d419, type: 3}
+  m_Name: Random Figure Generator Settings
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: b5ce75e903a98df4a87a720f9225479a, type: 2}
+  DicePrefab: {fileID: 3504736762950303809, guid: a25f48d42ed7deb4d9676b5520bd0b29, type: 3}
+  Size: {x: 17, y: 9, z: 3}
+  FillPercentage: 0.462
