@@ -11,7 +11,7 @@ namespace DDX
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(TranslateToHandSystem))]
+    [CreateAssetMenu(menuName = "ECS/Systems/Hand/" + nameof(TranslateToHandSystem))]
     public sealed class TranslateToHandSystem : SimpleUpdateSystem<Dice, InGridPosition, MoveToHandTag>
     {
        private IamHand _hand;
@@ -38,6 +38,8 @@ namespace DDX
             entity.RemoveComponent<InGridPosition>();
             entity.RemoveComponent<MoveToHandTag>();
             entity.AddComponent<InHandTag>();
+
+            World.CreateEntity().AddComponent<InHandCountChangedEvent>();
 
         }
     }

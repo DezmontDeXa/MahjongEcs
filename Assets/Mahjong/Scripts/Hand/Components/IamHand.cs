@@ -13,6 +13,5 @@ namespace DDX
 		public RectTransform Transform;
 		public RectTransform AssemblyPoint;
 		public RectTransform[] CellsTransforms;
-		public int Lenght;	
 	}
 }

@@ -1,3 +1,5 @@
+using DDX;
+using Scellecs.Morpeh;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -73,13 +75,7 @@ public static class Algorithms
             if (result == null)
                 result = new List<Vector3>();
 
-            if (_neighbors == null)
-                _neighbors = new List<Neighbor>()
-            {
-                TopLeft, Top, TopRight,
-                Left, this, Right,
-                BottomLeft, Bottom, BottomRight
-            };
+            GetList(0.5f);
 
             foreach (var existPoint in existPositions)
             {
@@ -95,6 +91,18 @@ public static class Algorithms
                         result.Add(point);
 
             return result.Distinct().ToList();
+        }
+
+        public List<Neighbor> GetList(float step, bool returnThis = true)
+        {
+            if (_neighbors == null)
+                _neighbors = new List<Neighbor>()
+            {
+                TopLeft, Top, TopRight,
+                Left, returnThis?this:null, Right,
+                BottomLeft, Bottom, BottomRight
+            };
+            return _neighbors;
         }
     }
 
@@ -146,6 +154,34 @@ public static class Algorithms
         }
 
         return true;
+    }
+    public static Collider2D[] GetCollidersUnderPoint(Vector3 point)
+    {
+        var hits = Physics2D.RaycastAll(
+            point,
+            Vector2.zero); 
+        
+        if (hits.Length == 0)
+            return new Collider2D[0];
+
+        var colliders = hits.Where(x => x.collider != null).Select(x => x.collider).Distinct().ToArray();
+
+        return colliders;
+    }
+
+    public static Entity GetNearestEntity(Vector3 point)
+    {
+        var colliders = GetCollidersUnderPoint(point);
+        if (colliders.Length == 0) return null;
+        var nearestCollider = colliders.OrderBy(h => CalcDistance(h, point)).First();
+        var entity = nearestCollider.transform.gameObject.GetComponent<EntityRefMono>().Entity;
+
+        return entity;
+    }
+
+    private static float CalcDistance(Collider2D collider, Vector3 worldMousePosition)
+    {
+        return Vector2.Distance(collider.bounds.center, worldMousePosition);
     }
 
     public static bool PositionCanPlace(Vector3 position, List<Vector3> points)
@@ -200,4 +236,11 @@ public static class Algorithms
         return Mathf.Round(value / fraction) * fraction;
     }
 
+    public static Entity GetNearestEntity(Vector3 worldMousePosition, IEnumerable<Collider2D> avaliableColliders)
+    {
+        var nearestCollider = avaliableColliders.OrderBy(h => CalcDistance(h, worldMousePosition)).First();
+        var entity = nearestCollider.transform.gameObject.GetComponent<EntityRefMono>().Entity;
+
+        return entity;
+    }
 }

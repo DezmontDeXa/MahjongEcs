@@ -8,7 +8,7 @@ namespace DDX
 	[Il2CppSetOption(Option.NullChecks, false)]
 	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
-	[CreateAssetMenu(menuName = "ECS/Systems/" + nameof(GridSystem))]
+	[CreateAssetMenu(menuName = "ECS/Systems/Grid/" + nameof(GridSystem))]
 	public sealed class GridSystem : GridUpdateSystem
     {
         protected override void Process(Entity gridEntity, Entity diceEntity, Grid grid, Dice dice, InGridPosition pos)

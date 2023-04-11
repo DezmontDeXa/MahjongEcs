@@ -9,7 +9,7 @@ namespace DDX
 	[Il2CppSetOption(Option.NullChecks, false)]
 	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
-	[CreateAssetMenu(menuName = "ECS/Systems/" + nameof(AssemblyThreeDicesSystem))]
+	[CreateAssetMenu(menuName = "ECS/Systems/Hand/" + nameof(AssemblyThreeDicesSystem))]
 	public sealed class AssemblyThreeDicesSystem : UpdateSystem 
 	{
         private IamHand _hand;
@@ -36,6 +36,7 @@ namespace DDX
 				entity.RemoveComponent<InHandPosition>();
                 entity.AddComponent<AssemblingTag>();
             }
+            World.CreateEntity().AddComponent<InHandCountChangedEvent>();
         }
 	}
 }
