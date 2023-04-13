@@ -41,6 +41,9 @@ namespace DDX
 
             World.CreateEntity().AddComponent<InHandCountChangedEvent>();
 
+            ref var diceTakedEvent = ref World.CreateEntity().AddComponent<DiceTakedEvent>();
+            diceTakedEvent.Entity = entity;
+            diceTakedEvent.Dice = dice;
         }
     }
 }

@@ -22,7 +22,11 @@ namespace DDX
             World.RegisterOneFrame<FigureGeneratedEvent>(); 
             World.RegisterOneFrame<StartGameEvent>();
             World.RegisterOneFrame<LoseGameObject>();
-            World.RegisterOneFrame<LoseEvent>();
+            World.RegisterOneFrame<LoseEvent>();  
+            World.RegisterOneFrame<ClearGridEvent>();
+            World.RegisterOneFrame<InstantiateFigureEvent>();
+            World.RegisterOneFrame<InHandCountChangedEvent>(); 
+            World.RegisterOneFrame<DiceTakedEvent>();
         }
 
         public override void Dispose()

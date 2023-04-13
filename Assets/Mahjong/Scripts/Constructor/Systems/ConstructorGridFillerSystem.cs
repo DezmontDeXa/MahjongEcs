@@ -26,6 +26,9 @@ namespace DDX
             ref var grid = ref World.Filter.With<Grid>().First().GetComponent<Grid>();
             ProcessAddedDice(grid);
             ProcessRemovedDice(grid);
+
+            if (World.Filter.With<ClearGridEvent>().Any())
+                FillFirstLayer();
         }
 
         private void ProcessRemovedDice(Grid grid)
@@ -40,17 +43,26 @@ namespace DDX
 
         private void ProcessAddedDice(Grid grid)
         {
-            foreach (var entity in World.Filter.With<ConstructorDice>().With<InGridPosition>().Without<PlacedConstructorDice>().With<DiceClickedEvent>())
+            var entities = World.Filter.With<ConstructorDice>().With<InGridPosition>().Without<PlacedConstructorDice>().With<DiceClickedEvent>().ToList();
+            if (entities.Count == 0) return;
+            var entityToInGridPosition = entities.Select(x => new KeyValuePair<Entity, InGridPosition>(x, x.GetComponent<InGridPosition>()));   
+            var layerGroups = entityToInGridPosition.GroupBy(x => x.Value.Position.z).OrderBy(x => x.Key);
+
+            foreach (var group in layerGroups)
             {
-                var pos = entity.GetComponent<InGridPosition>().Position;
-                AddNextLevelForPosition(grid, pos);
-                RemoveThatLevelForPosition(grid, pos);
+                foreach (var pair in group)
+                {
+                    var pos = pair.Value.Position;
+                    AddNextLevelForPosition(grid, pos);
+                    RemoveThatLevelForPosition(grid, pos);
+                }
             }
         }
 
         private void AddNextLevelForPosition(Grid grid, Vector3 pos)
         {
-            var allPositions = World.Filter.With<GridPositionsList>().First().GetComponent<GridPositionsList>().AllPositions;
+            var allPositions = World.Filter.With<GridPositionsList>().FirstOrDefault()?.GetComponent<GridPositionsList>().AllPositions;
+            if (allPositions == null) return;
 
             var neighbors = new Neighbor(pos).Up;
             foreach (var neighbor in neighbors.GetList(0.5f))
