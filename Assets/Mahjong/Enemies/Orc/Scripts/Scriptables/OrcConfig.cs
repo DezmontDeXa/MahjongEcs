@@ -1,8 +1,8 @@
+using DDX;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "OrcConfig")]
-public class OrcConfig : ScriptableObject
+[CreateAssetMenu(fileName = "Configs/Enemy/OrcConfig")]
+public class OrcConfig : EnemyConfig
 {
-    public int StepsToAttack = 3;
 }

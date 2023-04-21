@@ -10,10 +10,8 @@ namespace DDX
 	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	[CreateAssetMenu(menuName = "ECS/Systems/Enemies/Angel/" + nameof(AngelAttackSystem))]
-	public sealed class AngelAttackSystem : AttackSystem
+	public sealed class AngelAttackSystem : AttackSystem<AngelConfig>
     {
-		[SerializeField] private AngelConfig _config;
-
 		private List<KeyValuePair<DiceData, Vector3>> _dataAndPos = new List<KeyValuePair<DiceData, Vector3>>();
 
         public override void OnAwake() 
@@ -35,16 +33,11 @@ namespace DDX
 			}			
         }
 
-        protected override int GetAttackRate()
-        {
-			return _config.StepsToAttack;
-        }
-
         protected override void Attack()
         {
 			ref var grid = ref World.Filter.With<Grid>().First().GetComponent<Grid>();
 
-			for (int i = 0; i < _config.RestoreDicesCount; i++)
+			for (int i = 0; i < Config.RestoreDicesCount; i++)
 			{
 				var posId = Random.Range(0, _dataAndPos.Count);
                 var dataAndPos = _dataAndPos[posId];
@@ -55,7 +48,7 @@ namespace DDX
 
         private void ReviveDice(Grid grid, DiceData data, Vector3 position)
         {
-            var dice = Instantiate(_config.DicePrefab, grid.StartPoint);
+            var dice = Instantiate(Config.DicePrefab, grid.StartPoint);
 
 			dice.Entity.AddComponent<DiceCanSelectTag>();
             var pos = dice.GetComponent<InGridPositionMono>();

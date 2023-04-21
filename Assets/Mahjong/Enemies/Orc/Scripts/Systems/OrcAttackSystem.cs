@@ -10,7 +10,7 @@ namespace DDX
 	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	[CreateAssetMenu(menuName = "ECS/Systems/Enemies/Orc/" + nameof(OrcAttackSystem))]
-	public sealed class OrcAttackSystem : AttackSystem 
+	public sealed class OrcAttackSystem : AttackSystem<OrcConfig>
 	{
 		[SerializeField] private OrcConfig _orcConfig;
         protected override void Attack()
@@ -31,11 +31,6 @@ namespace DDX
                 p.Position = pos;
             }
             World.CreateEntity().AddComponent<CanSelectChangedEvent>();
-        }
-
-        protected override int GetAttackRate()
-        {
-			return _orcConfig.StepsToAttack;
         }
 
         private static void Shuffle<T>(T[] arr)

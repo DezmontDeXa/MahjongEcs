@@ -78,7 +78,7 @@ namespace DDX
                 foreach (var ent in collidersToEntities.Values)
                 {
                     var neighbor = new Neighbor(ent.GetComponent<InGridPosition>().Position);
-                    if (!neighbor.GetList(0.5f, false).Any(
+                    if (!neighbor.GetList(false).Any(
                         n =>
                         {
                             if (allPositions.Any(x => n.Equals(x.Value.Position)))

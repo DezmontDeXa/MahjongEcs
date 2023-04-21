@@ -10,15 +10,8 @@ namespace DDX
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     [CreateAssetMenu(menuName = "ECS/Systems/Enemies/Druid/" + nameof(DruidAttackSystem))]
-    public sealed class DruidAttackSystem : AttackSystem
+    public sealed class DruidAttackSystem : AttackSystem<DruidConfig>
     {
-        [SerializeField] private DruidConfig _druidConfig;
-
-        protected override int GetAttackRate()
-        {
-            return _druidConfig.StepsToAttack;
-        }
-
         public override void OnUpdate(float deltaTime)
         {
             base.OnUpdate(deltaTime);

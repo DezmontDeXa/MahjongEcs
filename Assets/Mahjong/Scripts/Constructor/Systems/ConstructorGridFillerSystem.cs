@@ -65,7 +65,7 @@ namespace DDX
             if (allPositions == null) return;
 
             var neighbors = new Neighbor(pos).Up;
-            foreach (var neighbor in neighbors.GetList(0.5f))
+            foreach (var neighbor in neighbors.GetList())
                 if (neighbor.Position.x >= 0 && neighbor.Position.y >= 0)
                     if(!allPositions.Any(x=> neighbor.Equals(x.Value.Position)))
                         InstantiateInvisibleDice(grid, neighbor.Position);
@@ -76,7 +76,7 @@ namespace DDX
             var allPositions = World.Filter.With<GridPositionsList>().First().GetComponent<GridPositionsList>().AllPositions;
 
             var neighbors = new Neighbor(pos);
-            foreach (var neighbor in neighbors.GetList(0.5f, true))
+            foreach (var neighbor in neighbors.GetList(true))
                 if (neighbor.Position.x >= 0 && neighbor.Position.y >= 0)
                     if (!allPositions.Any(x => neighbor.Equals(x.Value.Position)))
                         InstantiateInvisibleDice(grid, neighbor.Position);
@@ -85,8 +85,8 @@ namespace DDX
         private void RemoveNextLevelForPosition(Grid grid, Vector3 removedPos)
         {
             var removedNeighbor = new Neighbor(removedPos);
-            var upRemovedNeighbors = removedNeighbor.Up.GetList(0.5f);
-            var realNeighbors = removedNeighbor.GetList(1f, false);
+            var upRemovedNeighbors = removedNeighbor.Up.GetList();
+            var realNeighbors = removedNeighbor.GetList(false);
 
             var allPositions = World.Filter
                 .With<ConstructorDice>()
@@ -104,7 +104,7 @@ namespace DDX
                 // существующая позиция
                 if(allPositions.Any(x=> realneighbor.Equals(x.Value)))
                 {
-                    var upRealNeighbors = realneighbor.Up.GetList(0.5f);
+                    var upRealNeighbors = realneighbor.Up.GetList();
                     foreach (var upRealNeighbor in upRealNeighbors)
                         upRemovedNeighbors.RemoveAll(x => x.Equals(upRealNeighbor.Position));
                 }
@@ -125,7 +125,7 @@ namespace DDX
         private void RemoveThatLevelForPosition(Grid grid, Vector3 addedPos)
         { 
             var addedNeighbor = new Neighbor(addedPos);
-            var forRemoveNeighbors = addedNeighbor.GetList(0.5f, false);
+            var forRemoveNeighbors = addedNeighbor.GetList(false);
             var allPositions = World.Filter.With<GridPositionsList>().First().GetComponent<GridPositionsList>().AllPositions;
 
             foreach (var enitityPos in allPositions)

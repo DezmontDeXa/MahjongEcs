@@ -24,7 +24,6 @@ namespace DDX
             ref GridPositionsList list = ref gridEntity.AddOrGet<GridPositionsList>();
                 
             var allPositions = World.Filter
-                .With<ConstructorDice>()
                 .With<InGridPosition>()
                 .With<GameObjectRef>()
                 .Select(x =>

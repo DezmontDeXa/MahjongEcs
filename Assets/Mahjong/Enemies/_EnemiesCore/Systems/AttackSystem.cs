@@ -2,14 +2,16 @@ using Scellecs.Morpeh.Systems;
 using Unity.IL2CPP.CompilerServices;
 using Scellecs.Morpeh;
 using System.Linq;
+using UnityEngine;
 
 namespace DDX
 {
 	[Il2CppSetOption(Option.NullChecks, false)]
 	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
-	public abstract class AttackSystem : UpdateSystem
+	public abstract class AttackSystem<Tconfig> : UpdateSystem where Tconfig : EnemyConfig
     {
+        [SerializeField] protected Tconfig Config;
         private int _stepsToAttack;
 
         public override void OnAwake()
@@ -25,7 +27,7 @@ namespace DDX
             {
                 _stepsToAttack++;
 
-                if (_stepsToAttack >= GetAttackRate())
+                if (_stepsToAttack >= Config.StepsToAttack)
                 {
                     Attack();
                     _stepsToAttack = 0;
@@ -37,7 +39,5 @@ namespace DDX
         {
 
         }
-
-        protected abstract int GetAttackRate();
     }
 }

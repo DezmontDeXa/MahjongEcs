@@ -75,7 +75,7 @@ public static class Algorithms
             if (result == null)
                 result = new List<Vector3>();
 
-            GetList(0.5f);
+            GetList();
 
             foreach (var existPoint in existPositions)
             {
@@ -93,7 +93,7 @@ public static class Algorithms
             return result.Distinct().ToList();
         }
 
-        public List<Neighbor> GetList(float step, bool returnThis = true)
+        public List<Neighbor> GetList(bool returnThis = true)
         {
             if (_neighbors == null)
                 _neighbors = new List<Neighbor>()
@@ -155,6 +155,7 @@ public static class Algorithms
 
         return true;
     }
+
     public static Collider2D[] GetCollidersUnderPoint(Vector3 point)
     {
         var hits = Physics2D.RaycastAll(
