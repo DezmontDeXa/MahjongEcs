@@ -26,7 +26,13 @@ namespace DDX
             World.RegisterOneFrame<ClearGridEvent>();
             World.RegisterOneFrame<InstantiateFigureEvent>();
             World.RegisterOneFrame<InHandCountChangedEvent>(); 
-            World.RegisterOneFrame<DiceTakedEvent>();
+            World.RegisterOneFrame<DiceTakedEvent>(); 
+            World.RegisterOneFrame<ThreeDicesAssembledEvent>();
+            //Обрабатывается в той же системе
+            //World.RegisterOneFrame<RootedChangedEvent>();
+            
+
+
         }
 
         public override void Dispose()

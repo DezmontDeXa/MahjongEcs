@@ -22,7 +22,7 @@ namespace DDX
 				World.CreateEntity().AddComponent<LoseEvent>();
 			}
 
-			entity.RemoveComponent<InHandCountChangedEvent>();
+			//entity.RemoveComponent<InHandCountChangedEvent>();
         }
     }
 }

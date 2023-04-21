@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41866e86e606f20458e713a0cae05277, type: 3}
-  m_Name: "\u041A\u0440\u0435\u0441\u0442"
+  m_Script: {fileID: 11500000, guid: 866ecc2e49a555746a073f3487c74cc4, type: 3}
+  m_Name: Druid Roots View System
   m_EditorClassIdentifier: 
-  Name: "\u041A\u0440\u0435\u0441\u0442"
-  Points:
-  - {x: 4.5, y: 3.5, z: 0}
-  - {x: 5.5, y: 2.5, z: 0}
-  - {x: 5.5, y: 3.5, z: 0}
+  _druidConfig: {fileID: 11400000, guid: f710b7e746d072942a855267fc6c9e93, type: 2}

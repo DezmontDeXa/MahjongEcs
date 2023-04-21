@@ -37,6 +37,7 @@ namespace DDX
                 entity.AddComponent<AssemblingTag>();
             }
             World.CreateEntity().AddComponent<InHandCountChangedEvent>();
+            World.CreateEntity().AddComponent<ThreeDicesAssembledEvent>();
         }
 	}
 }

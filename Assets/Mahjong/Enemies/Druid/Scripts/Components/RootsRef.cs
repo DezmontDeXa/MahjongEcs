@@ -8,10 +8,8 @@ namespace DDX
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    public struct DiceTakedEvent : IComponent
+    public struct RootsRef : IComponent
     {
-        public Dice Dice;
-        public Entity Entity;
-        public Vector3 Position;
+        public GameObject Roots;
     }
 }

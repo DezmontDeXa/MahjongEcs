@@ -921,6 +921,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8860fc01f28881b46ad0efb8a337179e, type: 2}
   updateSystems:
   - enabled: 1
+    system: {fileID: 11400000, guid: ff58071ae64adf0449bad47c4d34ba97, type: 2}
+  - enabled: 1
     system: {fileID: 11400000, guid: 8f6bfb586e7a4654a8c960057e160b8b, type: 2}
   - enabled: 1
     system: {fileID: 11400000, guid: 1d54839c626e75148a50bcbc4d5eae50, type: 2}
@@ -933,9 +935,9 @@ MonoBehaviour:
   - enabled: 1
     system: {fileID: 11400000, guid: c80822883618c7647bd2e555da1310f1, type: 2}
   - enabled: 1
-    system: {fileID: 11400000, guid: e6745da7009060c4d9004ddc0608e3be, type: 2}
-  - enabled: 1
     system: {fileID: 11400000, guid: 59d1446d6a19e1547987fbfd762d67c5, type: 2}
+  - enabled: 1
+    system: {fileID: 11400000, guid: e6745da7009060c4d9004ddc0608e3be, type: 2}
   - enabled: 1
     system: {fileID: 11400000, guid: 838caca75d2c0464b9eb2c8e4e140c7d, type: 2}
   - enabled: 1
@@ -952,7 +954,7 @@ MonoBehaviour:
     system: {fileID: 11400000, guid: 484110027b60cfb4c994f5585d73e2e2, type: 2}
   - enabled: 1
     system: {fileID: 11400000, guid: da28f8d462b54b745a287aa4ac423e60, type: 2}
-  - enabled: 1
+  - enabled: 0
     system: {fileID: 11400000, guid: 99f5e4ec74f13224584c1784b655c6e3, type: 2}
   fixedUpdateSystems: []
   lateUpdateSystems: []
@@ -2577,8 +2579,16 @@ MonoBehaviour:
   order: 1
   initializers: []
   updateSystems:
-  - enabled: 1
+  - enabled: 0
     system: {fileID: 11400000, guid: f3f074a455e5a354eb8bc589d4f9ed2a, type: 2}
+  - enabled: 0
+    system: {fileID: 11400000, guid: 7e2c35556e515c74283704f93149e0b6, type: 2}
+  - enabled: 0
+    system: {fileID: 11400000, guid: e556cbd6d0510cd4396081bd10626054, type: 2}
+  - enabled: 0
+    system: {fileID: 11400000, guid: 1791458fd5e80f1489aa12c0c8763b9c, type: 2}
+  - enabled: 1
+    system: {fileID: 11400000, guid: ead71d11eebfd4f4c81cd8a0960b3a91, type: 2}
   fixedUpdateSystems: []
   lateUpdateSystems: []
   cleanupSystems: []

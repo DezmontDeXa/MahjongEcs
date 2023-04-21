@@ -2,6 +2,7 @@ using Scellecs.Morpeh.Systems;
 using UnityEngine;
 using Unity.IL2CPP.CompilerServices;
 using Scellecs.Morpeh;
+using DG.Tweening;
 
 namespace DDX
 {
@@ -11,6 +12,12 @@ namespace DDX
 	[CreateAssetMenu(menuName = "ECS/Systems/Grid/" + nameof(GridSystem))]
 	public sealed class GridSystem : GridUpdateSystem
     {
+        public override void OnAwake()
+        {
+            base.OnAwake();
+			DOTween.SetTweensCapacity(1250, 50);
+        }
+
         protected override void Process(Entity gridEntity, Entity diceEntity, Grid grid, Dice dice, InGridPosition pos)
         {
 			var point = grid.StartPoint.transform.position;
@@ -26,10 +33,14 @@ namespace DDX
 			// Move dice
             dice.Transform.SetParent( grid.StartPoint);
             var diceRectTransform = (RectTransform)dice.Transform;
-			diceRectTransform.anchoredPosition = new Vector2(point.x, point.y);
+			diceRectTransform.DOAnchorPos(new Vector2(point.x, point.y), 0.22f);
+			//diceRectTransform.anchoredPosition = ;
 
 			// Calculate sorting order
 			pos.Canvas.sortingOrder = (int)(pos.Position.z * 1000) + (int)(Mathf.Abs(point.x)*2) + (int)(Mathf.Abs(point.y) * 2);
+
+			// Show in next frame
+			diceEntity.AddComponent<ShowAfterMoveTag>();
         }
     }
 }

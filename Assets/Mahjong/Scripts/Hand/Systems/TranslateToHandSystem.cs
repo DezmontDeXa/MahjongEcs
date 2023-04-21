@@ -32,6 +32,7 @@ namespace DDX
         {
             ref var @event = ref World.CreateEntity().AddComponent<CanSelectChangedEvent>();
             @event.Position = pos.Position;
+            var posVector = pos.Position;
 
             entity.GetComponent<InGridPosition>().Canvas.sortingOrder = 100500;
 
@@ -44,6 +45,7 @@ namespace DDX
             ref var diceTakedEvent = ref World.CreateEntity().AddComponent<DiceTakedEvent>();
             diceTakedEvent.Entity = entity;
             diceTakedEvent.Dice = dice;
+            diceTakedEvent.Position = posVector;
         }
     }
 }

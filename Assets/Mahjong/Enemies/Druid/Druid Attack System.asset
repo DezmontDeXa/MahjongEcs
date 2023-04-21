@@ -9,14 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41866e86e606f20458e713a0cae05277, type: 3}
-  m_Name: 123
+  m_Script: {fileID: 11500000, guid: a21000ce4b19352429988855f04a49ec, type: 3}
+  m_Name: Druid Attack System
   m_EditorClassIdentifier: 
-  Name: 123
-  Points:
-  - {x: 7, y: 3.5, z: 0}
-  - {x: 7, y: 3, z: 1}
-  - {x: 7.5, y: 1, z: 0}
-  - {x: 5.5, y: 3, z: 0}
-  - {x: 6.5, y: 2, z: 0}
-  - {x: 7.5, y: 2.5, z: 0}
+  _druidConfig: {fileID: 11400000, guid: f710b7e746d072942a855267fc6c9e93, type: 2}

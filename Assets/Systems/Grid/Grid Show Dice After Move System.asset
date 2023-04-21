@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9e76721320a9ea4e99b89639cc2382b, type: 3}
-  m_Name: AngelConfig
+  m_Script: {fileID: 11500000, guid: 6d74a318dd154484e8b62f885fb62904, type: 3}
+  m_Name: Grid Show Dice After Move System
   m_EditorClassIdentifier: 
-  DicePrefab: {fileID: 5961424921318992771, guid: 7a63a6662d5ae1f44bf61bf1d0d0dc73, type: 3}
-  StepsToAttack: 3
-  RestoreDicesCount: 1
