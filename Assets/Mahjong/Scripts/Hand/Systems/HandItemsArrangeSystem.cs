@@ -52,6 +52,7 @@ namespace DDX
                     ref var inHandPos = ref entity.AddOrGet<InHandPosition>();
                     inHandPos.Position = _pos;
                     inHandPos.PrevPosition = -1;
+                    inHandPos.GameObject = entity.GetComponent<GameObjectRef>().GameObject;
                 }
 
                 _pos++;

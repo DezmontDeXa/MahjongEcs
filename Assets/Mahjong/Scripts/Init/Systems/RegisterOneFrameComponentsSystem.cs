@@ -21,8 +21,8 @@ namespace DDX
             World.RegisterOneFrame<RequestGenerateFigureEvent>();
             World.RegisterOneFrame<FigureGeneratedEvent>(); 
             World.RegisterOneFrame<StartGameEvent>();
-            World.RegisterOneFrame<LoseGameObject>();
-            World.RegisterOneFrame<LoseEvent>();  
+            World.RegisterOneFrame<LoseEvent>();
+            World.RegisterOneFrame<WinEvent>();
             World.RegisterOneFrame<ClearGridEvent>();
             World.RegisterOneFrame<InstantiateFigureEvent>();
             World.RegisterOneFrame<InHandCountChangedEvent>(); 

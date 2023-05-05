@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca0043120982364aaa322e770980e7c, type: 3}
   m_Name: Succub Block System
   m_EditorClassIdentifier: 
-  Config: {fileID: 11400000, guid: 1b44243bd4081dc4983c5f15df334b6a, type: 2}
+  _gameSettings: {fileID: 11400000, guid: 5437354259b6d274f9a5faf2244b73f4, type: 2}

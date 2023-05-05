@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8400836d81b9da4fb03a3c166ad2dca, type: 3}
   m_Name: Hand Filled System
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: f517aa111b5936e429f3c75c67c3eb1d, type: 2}
+  _gameSettings: {fileID: 11400000, guid: 5437354259b6d274f9a5faf2244b73f4, type: 2}

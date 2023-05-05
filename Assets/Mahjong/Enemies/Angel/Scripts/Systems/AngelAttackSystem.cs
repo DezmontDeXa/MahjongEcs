@@ -13,15 +13,9 @@ namespace DDX
 	public sealed class AngelAttackSystem : AttackSystem<AngelConfig>
     {
 		private List<KeyValuePair<DiceData, Vector3>> _dataAndPos = new List<KeyValuePair<DiceData, Vector3>>();
-
-        public override void OnAwake() 
+			
+		public override void AfterUpdate(float deltaTime) 
 		{
-        }
-	
-		public override void OnUpdate(float deltaTime) 
-		{
-			base.OnUpdate(deltaTime);
-
 			foreach (var item in World.Filter.With<DiceTakedEvent>())
 			{
 				ref var diceTakedEvent = ref item.GetComponent<DiceTakedEvent>();

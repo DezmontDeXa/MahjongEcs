@@ -4,6 +4,7 @@ using Unity.IL2CPP.CompilerServices;
 using DG.Tweening;
 using Scellecs.Morpeh;
 using Scellecs.Morpeh.Helpers;
+using Unity.VisualScripting;
 
 namespace DDX
 {
@@ -35,15 +36,21 @@ namespace DDX
                 var _pos = pos;
 
                 dice.Transform.SetParent(_hand.CellsTransforms[_pos.Position].parent);
-                ((RectTransform)dice.Transform)
-                    .DOAnchorPos(_hand.CellsTransforms[_pos.Position].anchoredPosition, MoveAnimationDuration)
+
+                var rectTrans = ((RectTransform)dice.Transform);
+
+                if (rectTrans == null || rectTrans.gameObject.IsDestroyed())
+                    return;
+
+                rectTrans.DOAnchorPos(_hand.CellsTransforms[_pos.Position].anchoredPosition, MoveAnimationDuration)
                     .OnComplete(() =>
                     {
                         _dice.Transform.SetParent(_hand.CellsTransforms[_pos.Position]);
                         var rectTransform = (RectTransform)_dice.Transform;
                         rectTransform.anchoredPosition = new Vector2();
                         _entity.RemoveComponent<InAnimationTag>();
-                    });
+                        World.CreateEntity().AddComponent<InHandCountChangedEvent>();
+                    }).SetId(rectTrans.gameObject);
 
                 pos.PrevPosition = pos.Position;
             }

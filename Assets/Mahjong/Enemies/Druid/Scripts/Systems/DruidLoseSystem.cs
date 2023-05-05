@@ -12,8 +12,15 @@ namespace DDX
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	[CreateAssetMenu(menuName = "ECS/Systems/Enemies/Druid/" + nameof(DruidLoseSystem))]
 	public sealed class DruidLoseSystem : SimpleUpdateSystem<InHandCountChangedEvent>
-	{
-		[SerializeField] private HandSettings _handSettings;
+    {
+        [SerializeField] private GameSettings _gameSettings;
+        private HandSettings _handSettings;
+
+        public override void OnUpdate(float deltaTime)
+        {
+            _handSettings = _gameSettings.Difficulty.HandSettings;
+            base.OnUpdate(deltaTime);
+        }
 
         protected override void Process(Entity entity, ref InHandCountChangedEvent component, in float deltaTime)
         {

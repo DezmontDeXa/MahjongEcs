@@ -1,0 +1,43 @@
+using Scellecs.Morpeh;
+using Scellecs.Morpeh.Providers;
+using Sirenix.OdinInspector;
+using System;
+using Unity.IL2CPP.CompilerServices;
+
+namespace DDX
+{
+	[Il2CppSetOption(Option.NullChecks, false)]
+	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
+	public sealed class EventSpawnerInvokerMono : MonoProvider<EventSpawnerInvoker> 
+	{
+        protected override void Initialize()
+        {
+            base.Initialize();
+        }
+
+        [Button]
+		public void StartEvent()
+		{
+			SpawnEvent<StartGameEvent>();
+        }
+
+        [Button]
+        public void WinEvent()
+        {
+            SpawnEvent<WinEvent>();
+        }
+
+        [Button]
+        public void LoseEvent()
+        {
+            SpawnEvent<LoseEvent>();
+        }
+
+        private void SpawnEvent<T>() where T : struct, IComponent
+        {
+            ref var compontn = ref GetData();
+            compontn.World.CreateEntity().AddComponent<T>();
+        }
+    }
+}

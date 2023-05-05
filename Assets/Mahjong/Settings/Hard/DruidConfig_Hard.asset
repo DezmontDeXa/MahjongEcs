@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028d170dd219a8940a3e221cde28d284, type: 3}
+  m_Name: DruidConfig_Hard
+  m_EditorClassIdentifier: 
+  StepsToAttack: 3
+  RootsPerAttack: 1
+  UnRootsPerAssembly: 1
+  RootEffectPrefab: {fileID: 6099378018826948376, guid: f9f3063ac984b39489694ce67da815d9, type: 3}

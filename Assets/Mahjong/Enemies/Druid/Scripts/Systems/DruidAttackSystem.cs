@@ -12,9 +12,16 @@ namespace DDX
     [CreateAssetMenu(menuName = "ECS/Systems/Enemies/Druid/" + nameof(DruidAttackSystem))]
     public sealed class DruidAttackSystem : AttackSystem<DruidConfig>
     {
-        public override void OnUpdate(float deltaTime)
+        public override void AfterUpdate(float deltaTime)
         {
-            base.OnUpdate(deltaTime);
+            if (World.Filter.With<StartGameEvent>().Any())
+            {
+                foreach (var entity in World.Filter.With<RootedTag>())
+                    entity.RemoveComponent<RootedTag>();
+
+                return;
+            }
+
             foreach (var @event in World.Filter.With<ThreeDicesAssembledEvent>())
                 UnRoot();
         }

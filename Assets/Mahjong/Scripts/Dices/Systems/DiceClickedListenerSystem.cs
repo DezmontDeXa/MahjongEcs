@@ -10,7 +10,7 @@ namespace DDX
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(DiceClickedListenerSystem))]
-    public sealed class DiceClickedListenerSystem : SimpleUpdateSystem<Dice, DiceClickedEvent>
+    public sealed class DiceClickedListenerSystem : SimpleUpdateSystem<Dice, DiceClickedEvent, DiceCanSelectTag>
     {
         public override void OnAwake()
         {
@@ -18,12 +18,10 @@ namespace DDX
             World.RegisterOneFrame<DiceClickedEvent>();
         }
 
-        protected override void Process(Entity entity, ref Dice dice, ref DiceClickedEvent @event, in float deltaTime)
+        protected override void Process(Entity entity, ref Dice first, ref DiceClickedEvent second, ref DiceCanSelectTag third, in float deltaTime)
         {
-            if (!entity.Has<DiceCanSelectTag>()) return;
             entity.RemoveComponent<DiceCanSelectTag>();
             entity.AddComponent<MoveToHandTag>();
-
         }
     }
 }

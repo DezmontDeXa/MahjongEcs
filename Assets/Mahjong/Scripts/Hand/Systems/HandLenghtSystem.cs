@@ -12,13 +12,26 @@ namespace DDX
 	[Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	[CreateAssetMenu(menuName = "ECS/Systems/" + nameof(HandLenghtSystem))]
-	public sealed class HandLenghtSystem : SimpleUpdateSystem<HandCell>
+	public sealed class HandLenghtSystem : SimpleUpdateSystem<IamHand>
 	{
-		[SerializeField] private HandSettings _settings;
+        [SerializeField] private GameSettings _gameSettings;
+        private HandSettings _settings;
 
-        protected override void Process(Entity entity, ref HandCell cell, in float deltaTime)
-        {         
-            cell.GameObject.SetActive(cell.InHandIndex < _settings.Lenght);            
+        public override void OnUpdate(float deltaTime)
+        {
+            _settings = _gameSettings.Difficulty.HandSettings;
+            base.OnUpdate(deltaTime);
+        }
+
+        protected override void Process(Entity entity, ref IamHand hand, in float deltaTime)
+        {
+            for (var i = 0; i < hand.CellsTransforms.Length; i++)
+            {
+                var cellTrans = hand.CellsTransforms[i];
+                var value = i < _settings.Lenght;
+                cellTrans.gameObject.SetActive(value);
+
+            }
         }
     }
 }

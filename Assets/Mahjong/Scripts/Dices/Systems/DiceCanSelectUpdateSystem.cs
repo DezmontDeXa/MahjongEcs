@@ -14,8 +14,6 @@ namespace DDX
     [CreateAssetMenu(menuName = "ECS/Systems/" + nameof(DiceCanSelectUpdateSystem))]
     public sealed class DiceCanSelectUpdateSystem : SimpleUpdateSystem<CanSelectChangedEvent>
     {
-        [SerializeField] private Color _canSelectColor;
-        [SerializeField] private Color _canNotSelectColor;
 
         protected override void Process(Entity entity, ref CanSelectChangedEvent @event, in float deltaTime)
         {
@@ -39,9 +37,9 @@ namespace DDX
                 ref var imgRef = ref ent.GetComponent<DiceImageRef>();
 
                 if (Algorithms.PositionCanSelect(pos.Position, otherPoses.Values))
-                    SetCanSelect(ent, imgRef);
+                    SetCanSelect(ent);
                 else
-                    SetCanNotSelect(ent, imgRef);
+                    SetCanNotSelect(ent);
             }
         }
 
@@ -59,29 +57,23 @@ namespace DDX
                 var nearEntity = pair.Key;
 
                 ref var pos = ref nearEntity.GetComponent<InGridPosition>();
-                ref var imgRef = ref nearEntity.GetComponent<DiceImageRef>();
 
                 if (Algorithms.PositionCanSelect(pos.Position, otherPoses.Values))
-                    SetCanSelect(nearEntity, imgRef);
+                    SetCanSelect(nearEntity);
                 else
-                    SetCanNotSelect(nearEntity, imgRef);
+                    SetCanNotSelect(nearEntity);
             }
         }
 
-        private void SetCanSelect(Entity entity, DiceImageRef imgRef)
+        private void SetCanSelect(Entity entity)
         {
             entity.AddOrGet<DiceCanSelectTag>();
-            imgRef.BackImage.color = _canSelectColor;
-            imgRef.Image.color = _canSelectColor;
         }
 
-        private void SetCanNotSelect(Entity entity, DiceImageRef imgRef)
+        private void SetCanNotSelect(Entity entity)
         {
             if (entity.Has<DiceCanSelectTag>())
                 entity.RemoveComponent<DiceCanSelectTag>();
-
-            imgRef.BackImage.color = _canNotSelectColor;
-            imgRef.Image.color = _canNotSelectColor;
         }
 
     }

@@ -40,7 +40,7 @@ namespace DDX
             entity.RemoveComponent<MoveToHandTag>();
             entity.AddComponent<InHandTag>();
 
-            World.CreateEntity().AddComponent<InHandCountChangedEvent>();
+
 
             ref var diceTakedEvent = ref World.CreateEntity().AddComponent<DiceTakedEvent>();
             diceTakedEvent.Entity = entity;

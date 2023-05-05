@@ -10,6 +10,5 @@ namespace DDX
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	public struct InHandTag : IComponent 
 	{
-	
 	}
 }

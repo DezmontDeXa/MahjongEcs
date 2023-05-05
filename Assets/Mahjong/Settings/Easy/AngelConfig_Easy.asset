@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e76721320a9ea4e99b89639cc2382b, type: 3}
+  m_Name: AngelConfig_Easy
+  m_EditorClassIdentifier: 
+  DicePrefab: {fileID: 5961424921318992771, guid: 7a63a6662d5ae1f44bf61bf1d0d0dc73, type: 3}
+  StepsToAttack: 3
+  RestoreDicesCount: 1

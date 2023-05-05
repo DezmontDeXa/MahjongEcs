@@ -29,12 +29,13 @@ namespace DDX
                 {
                     var dice = diceEntity.GetComponent<Dice>();
                     var pos = diceEntity.GetComponent<InGridPosition>();
+                    var size = diceEntity.GetComponent<InGridSize>();
 
-                    Process(gridEntity, diceEntity, grid, dice, pos);
+                    Process(gridEntity, diceEntity, grid, dice, pos, size);
                 }
             }
         }
 
-        protected abstract void Process(Entity gridEntity, Entity diceEntity, Grid grid, Dice dice, InGridPosition pos);
+        protected abstract void Process(Entity gridEntity, Entity diceEntity, Grid grid, Dice dice, InGridPosition pos, InGridSize size);
     }
 }

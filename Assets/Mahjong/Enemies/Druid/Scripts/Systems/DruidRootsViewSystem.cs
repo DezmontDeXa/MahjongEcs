@@ -13,7 +13,14 @@ namespace DDX
 	[CreateAssetMenu(menuName = "ECS/Systems/Enemies/Druid/" + nameof(DruidRootsViewSystem))]
 	public sealed class DruidRootsViewSystem : SimpleUpdateSystem<HandCell, GameObjectRef> 
 	{
-		[SerializeField] private DruidConfig _druidConfig;
+        [SerializeField] private GameSettings _gameSettings;
+        private DruidConfig _druidConfig;
+
+        public override void OnUpdate(float deltaTime)
+        {
+            _druidConfig = _gameSettings.Difficulty.GetGirlConfigByType<DruidConfig>();
+            base.OnUpdate(deltaTime);
+        }
 
         protected override void Process(Entity entity, ref HandCell cell, ref GameObjectRef goRef, in float deltaTime)
         {

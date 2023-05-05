@@ -48,12 +48,12 @@ namespace DDX
             var forReleaseNeighbors = new List<Neighbor>
             {
                 neighbor.Left.Left,
-                neighbor.Left.Left.Up,
-                neighbor.Left.Left.Down,
+                neighbor.Left.Left.Top,
+                neighbor.Left.Left.Bottom,
 
                 neighbor.Right.Right,
-                neighbor.Right.Right.Up,
-                neighbor.Right.Right.Down,
+                neighbor.Right.Right.Top,
+                neighbor.Right.Right.Bottom,
             };
 
 

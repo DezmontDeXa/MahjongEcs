@@ -12,7 +12,6 @@ namespace DDX
 	[CreateAssetMenu(menuName = "ECS/Systems/Enemies/Orc/" + nameof(OrcAttackSystem))]
 	public sealed class OrcAttackSystem : AttackSystem<OrcConfig>
 	{
-		[SerializeField] private OrcConfig _orcConfig;
         protected override void Attack()
         {
             base.Attack();

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866ecc2e49a555746a073f3487c74cc4, type: 3}
   m_Name: Druid Roots View System
   m_EditorClassIdentifier: 
-  _druidConfig: {fileID: 11400000, guid: f710b7e746d072942a855267fc6c9e93, type: 2}
+  _gameSettings: {fileID: 11400000, guid: 5437354259b6d274f9a5faf2244b73f4, type: 2}

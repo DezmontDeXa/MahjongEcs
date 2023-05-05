@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef9a269f069a24498353fab121c8605, type: 3}
   m_Name: Angel Attack System
   m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: aaec4abb8e2103d4ba4fb4bceb85d38b, type: 2}
+  Enabled: 0
+  _gameSettings: {fileID: 11400000, guid: 5437354259b6d274f9a5faf2244b73f4, type: 2}

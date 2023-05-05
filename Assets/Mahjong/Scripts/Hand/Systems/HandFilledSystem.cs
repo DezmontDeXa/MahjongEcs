@@ -11,8 +11,15 @@ namespace DDX
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	[CreateAssetMenu(menuName = "ECS/Systems/Hand/" + nameof(HandFilledSystem))]
 	public sealed class HandFilledSystem : SimpleUpdateSystem<InHandCountChangedEvent>
-	{
-		[SerializeField] private HandSettings _settings;
+    {
+        [SerializeField] private GameSettings _gameSettings;
+        private HandSettings _settings;
+
+        public override void OnUpdate(float deltaTime)
+        {
+            _settings = _gameSettings.Difficulty.HandSettings;
+            base.OnUpdate(deltaTime);
+        }
 
         protected override void Process(Entity entity, ref InHandCountChangedEvent component, in float deltaTime)
         {

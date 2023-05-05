@@ -12,5 +12,6 @@ namespace DDX
     {
         public int Position;
         public int PrevPosition;
+        internal Object GameObject;
     }
 }

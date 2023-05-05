@@ -5,6 +5,8 @@ using Scellecs.Morpeh.Helpers;
 using Scellecs.Morpeh;
 using static UnityEditor.PlayerSettings;
 using DG.Tweening;
+using Unity.VisualScripting;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace DDX
 {
@@ -33,16 +35,20 @@ namespace DDX
             var _entity = entity;
 
             dice.Transform.SetParent(_hand.AssemblyPoint);
-            ((RectTransform)dice.Transform)
-                .DOAnchorPos(_hand.AssemblyPoint.anchoredPosition, MoveAnimationDuration)
-                .OnComplete(() =>
-                {
-                    _dice.Transform.SetParent(_hand.AssemblyPoint);
-                    var rectTransform = (RectTransform)_dice.Transform;
-                    rectTransform.anchoredPosition = new Vector2();
-                    _entity.RemoveComponent<InAnimationTag>();
-                    _entity.AddComponent<AssembledTag>();
-                });
+
+            var rectTrans = (RectTransform)dice.Transform;
+            if (rectTrans == null || rectTrans.gameObject.IsDestroyed())
+                return;
+            rectTrans
+            .DOAnchorPos(_hand.AssemblyPoint.anchoredPosition, MoveAnimationDuration)
+            .OnComplete(() =>
+            {
+                _dice.Transform.SetParent(_hand.AssemblyPoint);
+                var rectTransform = (RectTransform)_dice.Transform;
+                rectTransform.anchoredPosition = new Vector2();
+                _entity.RemoveComponent<InAnimationTag>();
+                _entity.AddComponent<AssembledTag>();
+            }).SetId(rectTrans.gameObject);
 
         }
     }

@@ -1,5 +1,6 @@
 using Scellecs.Morpeh.Providers;
 using Unity.IL2CPP.CompilerServices;
+using UnityEngine;
 
 namespace DDX
 {
@@ -8,10 +9,13 @@ namespace DDX
 	[Il2CppSetOption(Option.DivideByZeroChecks, false)]
 	public sealed class GameObjectRefMono : MonoProvider<GameObjectRef> 
 	{
+        [SerializeField] private bool _useThisGameObject = true;
+
         protected override void Initialize()
         {
             base.Initialize();
-            GetData().GameObject = gameObject;
+            if(_useThisGameObject)
+                GetData().GameObject = gameObject;
         }
     }
 }
