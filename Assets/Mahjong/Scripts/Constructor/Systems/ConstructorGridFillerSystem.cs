@@ -123,22 +123,38 @@ namespace DDX
         }
 
         private void RemoveThatLevelForPosition(Grid grid, Vector3 addedPos)
-        { 
+        {
             var addedNeighbor = new Neighbor(addedPos);
             var forRemoveNeighbors = addedNeighbor.GetList(false);
-            var allPositions = World.Filter.With<GridPositionsList>().First().GetComponent<GridPositionsList>().AllPositions;
+            Dictionary<Entity, InGridPosition> allPositions = GetAllPositions();
 
             foreach (var enitityPos in allPositions)
             {
                 if (enitityPos.Key.IsNullOrDisposed()) continue;
 
-                if (forRemoveNeighbors.Where(x=>x != null).Any(x => x.Equals(enitityPos.Value.Position)))
+                if (forRemoveNeighbors.Where(x => x != null).Any(x => x.Equals(enitityPos.Value.Position)))
                 {
                     ref var goRef = ref enitityPos.Key.GetComponent<GameObjectRef>();
                     Destroy(goRef.GameObject);
                     World.RemoveEntity(enitityPos.Key);
                 }
             }
+        }
+
+        private Dictionary<Entity, InGridPosition> GetAllPositions()
+        {
+            return World.Filter.With<GridPositionsList>().First().GetComponent<GridPositionsList>().AllPositions;
+            
+            var entities = World.Filter.With<InGridPosition>();
+            var result = new Dictionary<Entity, InGridPosition>();
+
+            foreach (var entity in entities)
+            {
+                result.Add(entity, entity.GetComponent<InGridPosition>());
+            }
+
+            return result;
+
         }
 
         private void FillFirstLayer()
@@ -160,6 +176,13 @@ namespace DDX
             var pos = dice.GetComponent<InGridPositionMono>();
             ref var posComp = ref pos.GetData();
             posComp.Position = position;
+
+            if (World.Filter.With<GridPositionsList>().Any())
+            {
+                var allPosDict = World.Filter.With<GridPositionsList>().First().GetComponent<GridPositionsList>().AllPositions;
+                if (!allPosDict.Any(x => x.Value.Position.Equals(position)))
+                    allPosDict.Add(dice.Entity, pos.GetData());
+            }
         }
     }
 }

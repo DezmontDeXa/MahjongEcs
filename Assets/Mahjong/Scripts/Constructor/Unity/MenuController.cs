@@ -53,6 +53,11 @@ namespace DDX
         {
             GetComponent<EntityRefMono>().Entity.AddComponent<ClearGridEvent>();
         }
+        public void GenerateGrid()
+        {
+            GetComponent<EntityRefMono>().Entity.AddComponent<RequestGenerateFigureEvent>();
+        }
+        #endregion
         private void LoadGrid(Figure figure)
         {
             GetComponent<EntityRefMono>().Entity.AddComponent<ClearGridEvent>();
@@ -62,7 +67,6 @@ namespace DDX
             @event.DicesContainer = _dicesContainer;
             @event.DicePrefab = _dicePrefab;
         }
-        #endregion
 
         private void UpdateFiguresList()
         {
